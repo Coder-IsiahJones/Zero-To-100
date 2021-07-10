@@ -30,8 +30,9 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand logoFont" href="#"><img src="img/android-chrome-72x72.png"
-                    class="d-inline-block align-text-bottom" alt="logo" width="30" height="24" /> ZERO</a>
+            <a class="navbar-brand logoFont" href="#">
+                <!-- <img src="img/android-chrome-72x72.png" class="d-inline-block align-text-bottom" alt="logo" width="30" height="24" />  -->
+                ZERO To 100</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -48,7 +49,8 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/Coder-IsiahJones/Zero-To-100">Git
+                            Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank"
@@ -62,22 +64,101 @@
     <!-- Main -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for <span class="logoFont">ZERO</span></h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for <span class="logoFont"> ZERO To 100</span></h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call Hello World Function
-                            function HelloWorld() {
-                               alert("Hello World");
+                            // Get the values from the page
+                            function getValues() {
+                               // Get values from the page
+                               let startValue = document.getElementById("startValue").value;
+                               let endValue = document.getElementById("endValue").value;
+                            
+                               // Cast into integer
+                               startValue = parseInt(startValue);
+                               endValue = parseInt(endValue);
+                            
+                               // Conditional Statement
+                               // Validate input 
+                               if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                  // Call generateNumbers()
+                                  let numbers = generateNumbers(startValue, endValue);
+                            
+                                  // Call displayNumbers()
+                                  displayNumbers(numbers);
+                               } else {
+                                  alert("You must enter integers");
+                               }
+                            }
+                            
+                            // Generate numbers from startValue to the endValue
+                            function generateNumbers(startValue, endValue) {
+                               let numbers = [];
+                            
+                               // Get all numbers from start to end
+                               for (let index = startValue; index <= endValue; index++) {
+                                  numbers.push(index);
+                               }
+                            
+                               return numbers;
+                            }
+                            
+                            // Display the numbers and mark the even numbers bold
+                            function displayNumbers(numbers) {
+                               let templateRows = "";
+                            
+                               for (let index = 0; index < numbers.length; index++) {
+                                  let className = "even";
+                                  let number = numbers[index];
+                            
+                                  // Check if number is even
+                                  if (number % 2 == 0) {
+                                     className = "even";
+                                  } else {
+                                     className = "odd";
+                                  }
+                            
+                                  templateRows += `<tr><td class="${className}">${number}</td></tr>`
+                               }
+                            
+                               document.getElementById("results").innerHTML = templateRows
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World".</p>
+                    <p>The Code is structured in three function.</p>
+                    <h5>getValues()</h5>
+                    <p>
+                        getValues accepts the user input from the page. It utilizes <strong>getElementById</strong> to
+                        pull the values from the page. It passes those values to the <strong>generateNumbers</strong>
+                        function. The function generateNumbers returns an array of values and passes that array to the
+                        <strong>displayNumbers</strong> function.
+                    </p>
+
+                    <h5>generateNumbers()</h5>
+                    <p>
+                        generateNumbers takes in two parameters startValue and endValue. We create a variable (numbers)
+                        that holds an array. A for loop is used to generate all of the numbers between
+                        <strong>startValue</strong> and <strong>endValue</strong>.
+                    </p>
+
+                    <h5>displayNumbers</h5>
+                    <p>
+                        displayNumbers takes in one parameter numbers. The variable numbers is an array that holds
+                        values between <strong>startValue</strong> and <strong>endValue</strong>. We create a variable
+                        (className) that holds the name of a CSS class that we will use to bold the numbers when they
+                        are even. We create a variable templateRows that will hold the html we will write to the page.
+                    </p>
+
+                    <p>
+                        A for loop is used to check all of the numbers to see if they are even or odd. The remainder
+                        operator (%) is used to see if the number is divisible by two. If it returns zero the number is
+                        even. If not (else) its odd. The correct className is injected into the html row for display.
+                        Each iteration of the loop adds the templateRows variable. At the end of the loop the resulting
+                        HTML rows are written to the page.
+                    </p>
                 </div>
             </div>
         </div>
@@ -95,7 +176,7 @@
 
                 <!-- Personal Logo -->
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
-                    <h2 class="text-light">𝕮𝖔𝖉𝖊𝖗-𝕴𝖘𝖎𝖆𝖍𝕵𝖔𝖓𝖊𝖘</h2>
+                    <img src="img/Logo/No Logo/White logo - no background.svg" height="42" alt="Logo">
                 </div>
 
                 <!-- Socials -->
